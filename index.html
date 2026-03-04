@@ -10,13 +10,13 @@
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--bg:#fef6f9;--card:#fff;--text:#4a3f5c;--sub:#8b7fa3;--pink:#f2a0b7;--pink-deep:#e8789a;--pink-light:#fce4ec;--lavender:#c5a3d9;--lavender-light:#f3e8fa;--mint:#8ecfb8;--mint-light:#e4f7ef;--peach:#f8c9a0;--y1:#e8789a;--y2:#b085d1;--y3:#6bbf99;--border:#f0e4ee;--shadow:0 2px 16px rgba(180,140,180,.12);--radius:18px}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:'M PLUS Rounded 1c','Zen Maru Gothic',sans-serif;background:var(--bg);color:var(--text);line-height:1.85;min-height:100vh;overflow-x:hidden;max-width:100vw;background-image:radial-gradient(ellipse at 10% 20%,rgba(242,160,183,.12) 0%,transparent 50%),radial-gradient(ellipse at 90% 80%,rgba(197,163,217,.1) 0%,transparent 50%),radial-gradient(ellipse at 50% 50%,rgba(142,207,184,.08) 0%,transparent 60%)}
+body{font-family:'M PLUS Rounded 1c','Zen Maru Gothic',sans-serif;background:var(--bg);color:var(--text);line-height:1.85;min-height:100vh;overflow-x:hidden;max-width:100vw}
 .header{background:linear-gradient(135deg,#f7c5d5 0%,#ddb3e6 40%,#a8d8c8 100%);padding:20px 16px 16px;text-align:center;position:relative;z-index:100}
-.header::after{content:'';position:absolute;bottom:-12px;left:0;right:0;height:24px;background:var(--bg);border-radius:50% 50% 0 0/100% 100% 0 0}
+.header::after{display:none}
 .header h1{font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:.08em;text-shadow:0 1px 8px rgba(180,100,150,.3)}
 .header p{font-size:.72rem;color:rgba(255,255,255,.85);font-weight:500;margin-top:2px}
-.search-section{position:sticky;top:0;z-index:90;background:var(--bg);padding:16px 16px 8px;background-image:radial-gradient(ellipse at 10% 20%,rgba(242,160,183,.12) 0%,transparent 50%)}
-.search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:50px;box-shadow:0 2px 20px rgba(200,150,180,.15);display:flex;align-items:center;padding:4px 4px 4px 18px;border:2px solid var(--border);transition:border-color .2s}
+.search-section{position:sticky;top:0;z-index:90;background:var(--bg);padding:16px 16px 8px}
+.search-box{max-width:560px;margin:0 auto;background:#fff;border-radius:50px;box-shadow:0 1px 8px rgba(200,150,180,.1);display:flex;align-items:center;padding:4px 4px 4px 18px;border:1.5px solid var(--border);transition:border-color .2s}
 .search-box:focus-within{border-color:var(--pink)}
 .search-box input{flex:1;border:none;outline:none;font-size:.92rem;font-family:inherit;background:transparent;padding:8px 0;color:var(--text);min-width:0}
 .search-box input::placeholder{color:#c4b5d0;font-size:.85rem}
@@ -40,7 +40,7 @@ body{font-family:'M PLUS Rounded 1c','Zen Maru Gothic',sans-serif;background:var
 .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden;border:1.5px solid var(--border);transition:transform .15s,box-shadow .15s}
 .card:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(180,140,180,.18)}
 .card-head{display:flex;align-items:flex-start;gap:8px;padding:14px 14px 10px;cursor:pointer;user-select:none}
-.grade-badge{font-size:.65rem;font-weight:800;color:#fff;border-radius:10px;padding:2px 9px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.grade-badge{font-size:.62rem;font-weight:800;color:#fff;border-radius:10px;padding:2px 7px;white-space:nowrap;flex-shrink:0;margin-top:2px}
 .grade-1 .grade-badge{background:var(--y1)}
 .grade-2 .grade-badge{background:var(--y2)}
 .grade-3 .grade-badge{background:var(--y3)}
@@ -3109,7 +3109,7 @@ f.forEach(d=>{
       lastSec=secKey;
     }
   }
-  html+=`<div class="card grade-${d.g}" id="c${d.id}"><div class="card-head" onclick="tog(${d.id})"><span class="grade-badge">${d.g}年</span><span class="en-sentence">${hl(d.en,sT)}</span><span class="grammar-tag">${d.tag}</span><span class="arrow">▼</span></div><div class="card-body">
+  html+=`<div class="card grade-${d.g}" id="c${d.id}"><div class="card-head" onclick="tog(${d.id})"><span class="grade-badge">中${d.g}${d.sec?'L'+d.sec.slice(1).split('P')[0]:''}</span><span class="en-sentence">${hl(d.en,sT)}</span><span class="grammar-tag">${d.tag}</span><span class="arrow">▼</span></div><div class="card-body">
 <span class="speak-en" onclick="event.stopPropagation();speak('${d.en.replace(/'/g,"\\'")}',this)">${d.en}</span>
 
 <div class="ja-trans">🇯🇵 ${hl(d.ja,sT)}</div>
